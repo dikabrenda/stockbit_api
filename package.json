@@ -1,0 +1,35 @@
+{
+  "name": "stockbit_api",
+  "version": "1.0.0",
+  "description": "Test QA Enginer Stockbit",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha './src/test/users' --recursive --reporter mochawesome --reporter-options html=false --timeout 180000 --es-module-specifier-resolution=node",
+    "combine-report": "mochawesome-merge ./mochawesome-report/*.json > index.json",
+    "generate-report": "marge ./index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dikabrenda/QAE_Shopee_Test.git"
+  },
+  "author": "Dika Brenda Angkasa",
+  "type": "module",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dikabrenda/QAE_Shopee_Test/issues"
+  },
+  "homepage": "https://github.com/dikabrenda/QAE_Shopee_Test#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "chai": "^4.3.4",
+    "chai-json-schema": "^1.5.1",
+    "dotenv": "^10.0.0",
+    "mocha": "^9.1.3",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^6.0.1",
+    "node-localstorage": "^2.2.1",
+    "prettier": "^2.4.1",
+    "qs": "^6.10.1"
+  }
+}

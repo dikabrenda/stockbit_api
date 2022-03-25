@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "required": [
+        "code",
+        "meta",
+        "data"
+    ],
+    "properties": {
+        "code": {
+            "$id": "#code",
+            "type": "integer"
+        },
+        "meta": {
+            "$id": "#meta",
+            "type": "null"
+        },
+        "data": {
+            "$id": "#data",
+            "type": "null"
+        }
+    },
+    "additionalProperties": true
+}

@@ -1,0 +1,52 @@
+name: Test-On-Pipeline
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+        - '**.md'
+
+jobs:
+  test:
+    name: Shopee - ${{ matrix.node-version}} ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install
+      run: |
+       npm install
+
+    - name: npm build
+      run: |
+       npm run build --if-present
+
+    - name: npm test API
+      run: |
+        npm run test
+      env:
+        CI: true
+
+    - name: Merge test reports
+      run: npm run combine-report
+
+    - name: Generate HTML report
+      run: npm run generate-report
+
+    - name: Deploy Report page to github page
+      uses: peaceiris/actions-gh-pages@v3.7.3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
